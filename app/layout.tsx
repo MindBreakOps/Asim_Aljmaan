@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, IBM_Plex_Mono, Cinzel, Playfair_Display } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], weight: ["100", "200", "300", "400"], variable: "--font-inter" });
@@ -35,6 +36,7 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <body className={`${inter.variable} ${mono.variable} ${cinzel.variable} ${playfair.variable} font-sans antialiased bg-navy`}>
         {children}
+        <Analytics />
       </body>
     </html>
   );
