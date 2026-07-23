@@ -19,8 +19,11 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Asim Aljma'an | Systems Developer & ERP Architect",
-  description: "Portfolio of Asim Aljma'an, showcasing the OPERIX ERP ecosystem and operational recovery expertise.",
+  title: "Asim Ahmed | System Architect",
+  description: "Portfolio of Asim Ahmed, showcasing the OPERIX ERP ecosystem and operational recovery expertise.",
+  icons: {
+    icon: '/logo.svg',
+  }
 };
 
 export default function RootLayout({
