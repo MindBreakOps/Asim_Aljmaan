@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 245, 240, 232; /* Ivory */
+  --background-start-rgb: 4, 7, 18; /* Near Black */
+  --gold-primary: #c9a84c;
+  --gold-vibrant: #e8c96a;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  background: rgb(var(--background-start-rgb));
+  color: rgb(var(--foreground-rgb));
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-inter), sans-serif;
+  line-height: 1.6;
+}
+
+/* Custom Typography Refinement */
+.font-display {
+  font-family: var(--font-cinzel), serif;
+  letter-spacing: -0.02em;
+}
+
+.font-mono {
+  font-family: var(--font-ibm-plex-mono), monospace;
+}
+
+.font-serif {
+  font-family: var(--font-playfair), serif;
+}
+
+/* Readability Utilities */
+.text-ivory {
+  color: #f5f0e8;
+}
+
+.text-gold {
+  color: #c9a84c;
+}
+
+.shadow-text {
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
+}
+
+.shadow-gold {
+  text-shadow: 0 0 20px rgba(201, 168, 76, 0.4);
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Transitions */
+::selection {
+  background: #c9a84c;
+  color: #070b18;
+}
+
+[data-interactive] {
+  cursor: pointer;
+}
