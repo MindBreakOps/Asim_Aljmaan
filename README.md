@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ASIM AHMED - Systems Architect Portfolio
 
-## Getting Started
+## Professional Dossier & Operating System
 
-First, run the development server:
+This project is a high-fidelity, macOS-inspired portfolio built with Next.js, Framer Motion, and Three.js. It features a fully functional "Asim_OS" ecosystem with interactive applications, window management, and cross-platform support (macOS Desktop / iOS Mobile).
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Live Project Links
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **OPERIX Solutions - Main**: [operix-solutions.com](https://operix-solutions.com)
+- **OPERIX 249 - Sudan**: [249.operix-solutions.com](https://249.operix-solutions.com)
+- **OPERIX Solutions - Reversed**: [operix-solutions.online](https://operix-solutions.online)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 📄 Professional Summary
 
-To learn more about Next.js, take a look at the following resources:
+**Dynamic Systems Developer and Operations Manager** with a Bachelor of Honors in Information Systems and a proven track record of bridging the gap between operational challenges and technical solutions. Demonstrated success in rescuing underperforming projects, optimizing workforce management, and architecting comprehensive ERP ecosystems from the ground up. Adept at leveraging technical proficiency in system architecture, database management, and web technologies to build scalable, user-centric tools that drive efficiency, accountability, and client satisfaction.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 💼 Professional Experience
 
-## Deploy on Vercel
+### Systems Developer & Operations Manager
+**OPERIX Solutions** | [operix-solutions.online](https://operix-solutions.online)
+*03/2026 – Present*
+- Developed and deployed the comprehensive OPERIX Solutions ERP ecosystem from the ground up, functioning as both lead Systems Developer and Operations Manager.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Deputy Operations Manager (Part-Time)
+**LINK Expert – Majdoul Tower Project** | Riyadh, Saudi Arabia
+*08/2025 – 02/2026*
+- Took over operations for a project facing severe staffing, performance, and client satisfaction issues.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🎓 Education
+
+### Bachelor of Honors in Information Systems
+**Bayan University of Science and Technology**
+*10/2019 – 09/2024*
+- GPA: 3.06 / 4.00 (Very Good)
+
+---
+
+## 🛠️ Core Skills
+
+### Operations & Management
+- Operations Planning & Control
+- Process Improvement
+- Client Relations & Issue Resolution
+- Working Under Heavy Pressure
+
+### Technical & Analytical
+- **Database Management**: Oracle (Excellent), SQL.
+- **Programming**: Java, Python, HTML, CSS, JavaScript
+- **Data Analysis**: Power BI, SPSS
+
+---
+
+## 🏆 Key Achievements
+- Architected and successfully launched the OPERIX Solutions ERP, transitioning from operational management into full-stack systems development.
+
+---
+
+## 🌐 Languages
+- **Arabic**: Native
+- **English**: Advanced
+
+---
+
+## 💻 Tech Stack
+- **Framework**: Next.js 15 (App Router)
+- **State Management**: Zustand
+- **Animations**: Framer Motion
+- **Styling**: Tailwind CSS 4
+- **Icons**: Custom macOS High-Fidelity Icons
