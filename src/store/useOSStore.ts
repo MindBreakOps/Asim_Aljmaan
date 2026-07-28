@@ -12,7 +12,7 @@ interface WindowState {
 }
 
 interface OSStore {
-  openWindows: Record<AppID, WindowState>;
+  openWindows: Partial<Record<AppID, WindowState>>;
   focusedWindow: AppID | null;
   maxZIndex: number;
   activeFolder: FolderID;
@@ -87,5 +87,5 @@ export const useOSStore = create<OSStore>((set, get) => ({
   setActiveFolder: (folder) => set({ activeFolder: folder }),
   setActiveMenu: (menu) => set({ activeMenu: menu }),
 
-  closeAll: () => set({ openWindows: {}, focusedWindow: null, activeMenu: null })
+  closeAll: () => set({ openWindows: {} as Record<AppID, WindowState>, focusedWindow: null, activeMenu: null })
 }));
