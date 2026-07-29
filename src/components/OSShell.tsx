@@ -49,6 +49,7 @@ export default function OSShell({ children }: { children: React.ReactNode }) {
     { id: "safari", label: "Safari", icon: "/safari.jpeg", appName: "Safari" },
     { id: "nova", label: "Nova", icon: "/nova.jpeg", appName: "Nova Editor" },
     { id: "preview", label: "Preview", icon: "/preview.jpeg", appName: "Preview" },
+    { id: "manual", label: "Solutions", icon: "/preview.jpeg", appName: "Tech Solutions" },
     { id: "terminal", label: "Terminal", icon: "/terminal.jpeg", appName: "Terminal" },
     { id: "mail", label: "Mail", icon: "/mails.jpeg", appName: "Mail" },
     { id: "skills", label: "Settings", icon: "/settings.jpeg", appName: "System Settings" },
@@ -119,7 +120,7 @@ export default function OSShell({ children }: { children: React.ReactNode }) {
   const menus = [
     { id: 'apple', label: <img src="/logo.svg" className="size-4 brightness-0" alt="" />, items: [
       { label: "About Asim OS", action: () => handleAppOpen('preview') },
-      { label: "System Manual", action: () => handleAppOpen('manual') },
+      { label: "Tech Solutions", action: () => handleAppOpen('manual') },
       { label: "Article Insight", action: () => handleAppOpen('article') },
       { label: "System Settings...", action: () => handleAppOpen('skills') },
       { label: "Restart...", action: () => window.location.reload() },

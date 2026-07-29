@@ -20,14 +20,18 @@ export default function Finder() {
   const content: Record<FolderID, any[]> = {
     Desktop: [
         { id: "cv", name: "Asim_Ahmed_CV.pdf", icon: "/preview.jpeg", app: "preview" },
-        { id: "op_main", name: "Operix_Solutions.app", icon: "/main.png", app: "safari" },
-        { id: "op_249", name: "Operix_Sudan.app", icon: "/249.png", app: "safari" },
-        { id: "op_online", name: "Operix_Reversed.app", icon: "/reversed.png", app: "safari" },
+        { id: "solutions", name: "Tech_Solutions.app", icon: "/preview.jpeg", app: "manual" },
         { id: "archive", name: "Dossier_Archive", icon: "/folder.jpeg", app: "finder" },
     ],
     Documents: [
-        { id: "cert1", name: "Cybersecurity_Cert.pdf", icon: "/preview.jpeg", app: "preview" },
-        { id: "cert2", name: "Data_Analysis_Cert.zip", icon: "/zip.jpeg", app: "none" },
+        { id: "op_ops", name: "OPERIX_Operations.webloc", icon: "/apps/ops.svg", app: "safari", url: "https://ops.operix-solutions.online" },
+        { id: "op_fmis", name: "OPERIX_FMIS.webloc", icon: "/apps/fmis.png", app: "safari", url: "https://www.fmis.operix-solutions.online" },
+        { id: "op_hris", name: "OPERIX_HRIS.webloc", icon: "/apps/hro.svg", app: "safari", url: "https://hris.operix-solutions.online" },
+        { id: "op_care", name: "OPERIX_Health_Care.webloc", icon: "/apps/care.svg", app: "safari", url: "https://care.operix-solutions.online" },
+        { id: "op_edu", name: "OPERIX_Edu.webloc", icon: "/apps/edu.png", app: "safari", url: "https://www.edu.operix-solutions.online" },
+        { id: "binabbas", name: "BinAbbas_Portal.webloc", icon: "/apps/binabbas.png", app: "safari", url: "https://www.binabbas.operix-solutions.online" },
+        { id: "hasad", name: "Hasad_Hub.webloc", icon: "/apps/hasad.png", app: "safari", url: "https://www.hasad.operix-solutions.online" },
+        { id: "data_analysis", name: "Data_Analysis_Insight.zip", icon: "/zip.jpeg", app: "download_all" },
     ],
     Downloads: [
         { id: "setup", name: "OPERIX_Installer.pkg", icon: "/zip.jpeg", app: "none" },
@@ -48,6 +52,23 @@ export default function Finder() {
 
   const handleFileAction = (file: any) => {
     if (file.app === 'none') return;
+
+    if (file.app === 'download_all') {
+        // Trigger multi download
+        const links = ['/Asim_Ahmed_CV.pdf', '/Asim_Ahmed_CV.pdf']; // Placeholder for article
+        links.forEach((url, i) => {
+            setTimeout(() => {
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = url.split('/').pop() || 'document.pdf';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            }, i * 500);
+        });
+        return;
+    }
+
     if (file.app === 'safari' && file.url) {
         openApp('safari', { url: file.url });
     } else {

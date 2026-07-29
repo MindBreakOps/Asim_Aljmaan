@@ -12,7 +12,7 @@ export default function Desktop() {
 
   const icons = [
     { id: "cv", name: "Asim_Ahmed_CV.pdf", icon: "/preview.jpeg", app: "preview" },
-    { id: "manual", name: "System_Manual.pdf", icon: "/folder.jpeg", app: "manual" },
+    { id: "manual", name: "Tech_Solutions.app", icon: "/preview.jpeg", app: "manual" },
     { id: "article", name: "The_Operix_Logic.txt", icon: "/preview.jpeg", app: "article" },
     { id: "op_hris", name: "OPERIX_HRIS.app", icon: "/apps/hro.svg", app: "safari", url: "https://hris.operix-solutions.online" },
     { id: "op_fmis", name: "OPERIX_FMIS.app", icon: "/apps/fmis.png", app: "safari", url: "https://www.fmis.operix-solutions.online" },
@@ -92,10 +92,10 @@ export default function Desktop() {
                 <div className="size-2 rounded-full bg-black/10" />
               </div>
               <div className="text-mac-blue font-bold">class OperixEcosystem {"{"}</div>
-              <div className="pl-4 text-black/40">constructor() {"{"}</div>
-              <div className="pl-8 text-black/60">this.nodes = ["HRIS", "FMIS", "OPS"];</div>
-              <div className="pl-8 text-black/60">this.state = "SCALING";</div>
-              <div className="pl-4 text-black/40">{"}"}</div>
+              <div className="pl-4 text-black/60">constructor() {"{"}</div>
+              <div className="pl-8 text-black/80">this.nodes = ["HRIS", "FMIS", "OPS"];</div>
+              <div className="pl-8 text-black/80">this.state = "SCALING";</div>
+              <div className="pl-4 text-black/60">{"}"}</div>
               <div className="text-mac-blue font-bold">{"}"}</div>
             </motion.div>
 
