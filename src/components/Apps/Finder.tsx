@@ -15,23 +15,22 @@ export default function Finder() {
         { id: 'Downloads', name: "Downloads", icon: "/downloads.jpeg" },
         { id: 'Applications', name: "Applications", icon: "/applications.jpeg" }
     ] as { id: FolderID, name: string, icon: string }[] },
+    { name: "Locations", items: [
+        { id: 'AsimOSDisk', name: "Asim OS Disk", icon: "/disk.jpeg" },
+    ] as { id: FolderID, name: string, icon: string }[] },
   ];
 
   const content: Record<FolderID, any[]> = {
     Desktop: [
-        { id: "cv", name: "Asim_Ahmed_CV.pdf", icon: "/preview.jpeg", app: "preview" },
-        { id: "solutions", name: "Tech_Solutions.app", icon: "/preview.jpeg", app: "manual" },
+        { id: "cv", name: "Asim_Ahmed_CV.pdf", icon: "/pdf.jpeg", app: "resume" },
+        { id: "solutions", name: "Tech_Solutions.app", icon: "/word.jpeg", app: "manual" },
         { id: "archive", name: "Dossier_Archive", icon: "/folder.jpeg", app: "finder" },
     ],
     Documents: [
-        { id: "op_ops", name: "OPERIX_Operations.webloc", icon: "/apps/ops.svg", app: "safari", url: "https://ops.operix-solutions.online" },
-        { id: "op_fmis", name: "OPERIX_FMIS.webloc", icon: "/apps/fmis.png", app: "safari", url: "https://www.fmis.operix-solutions.online" },
-        { id: "op_hris", name: "OPERIX_HRIS.webloc", icon: "/apps/hro.svg", app: "safari", url: "https://hris.operix-solutions.online" },
-        { id: "op_care", name: "OPERIX_Health_Care.webloc", icon: "/apps/care.svg", app: "safari", url: "https://care.operix-solutions.online" },
-        { id: "op_edu", name: "OPERIX_Edu.webloc", icon: "/apps/edu.png", app: "safari", url: "https://www.edu.operix-solutions.online" },
-        { id: "binabbas", name: "BinAbbas_Portal.webloc", icon: "/apps/binabbas.png", app: "safari", url: "https://www.binabbas.operix-solutions.online" },
-        { id: "hasad", name: "Hasad_Hub.webloc", icon: "/apps/hasad.png", app: "safari", url: "https://www.hasad.operix-solutions.online" },
-        { id: "data_analysis", name: "Data_Analysis_Insight.zip", icon: "/zip.jpeg", app: "download_all" },
+        { id: "cv_doc", name: "Asim_Ahmed_CV.pdf", icon: "/pdf.jpeg", app: "preview" },
+        { id: "article_doc", name: "The_Operix_Logic.txt", icon: "/notes.jpeg", app: "article" },
+        { id: "proposal_doc", name: "Project_Proposal.docx", icon: "/word.jpeg", app: "preview" },
+        { id: "manual_doc", name: "Tech_Solutions_Manual.pdf", icon: "/pdf.jpeg", app: "preview" },
     ],
     Downloads: [
         { id: "setup", name: "OPERIX_Installer.pkg", icon: "/zip.jpeg", app: "none" },
@@ -40,18 +39,26 @@ export default function Finder() {
         { id: "safari", name: "Safari.app", icon: "/safari.jpeg", app: "safari" },
         { id: "terminal", name: "Terminal.app", icon: "/terminal.jpeg", app: "terminal" },
         { id: "nova", name: "Nova.app", icon: "/nova.jpeg", app: "nova" },
-        { id: "op_care", name: "OPERIX_Care.app", icon: "/apps/care.svg", app: "safari", url: "https://care.operix-solutions.online" },
-        { id: "op_hris", name: "OPERIX_HRIS.app", icon: "/apps/hro.svg", app: "safari", url: "https://hris.operix-solutions.online" },
-        { id: "op_ops", name: "OPERIX_Ops.app", icon: "/apps/ops.svg", app: "safari", url: "https://ops.operix-solutions.online" },
-        { id: "op_hasad", name: "Hasad_Systems.app", icon: "/apps/hasad.png", app: "safari", url: "https://www.hasad.operix-solutions.online" },
-        { id: "op_binabbas", name: "BinAbbas_Group.app", icon: "/apps/binabbas.png", app: "safari", url: "https://www.binabbas.operix-solutions.online" },
-        { id: "op_edu", name: "OPERIX_Edu.app", icon: "/apps/edu.png", app: "safari", url: "https://www.edu.operix-solutions.online" },
-        { id: "op_fmis", name: "OPERIX_FMIS.app", icon: "/apps/fmis.png", app: "safari", url: "https://www.fmis.operix-solutions.online" },
+        { id: "gallery", name: "Gallery.app", icon: "/photos.jpeg", app: "gallery" },
+    ],
+    AsimOSDisk: [
+        { id: "user_folder", name: "User", icon: "/disk.jpeg", app: "folder_nav", targetFolder: 'User' },
+    ],
+    User: [
+        { id: "user_notes", name: "My_Notes", icon: "/notes.jpeg", app: "article" },
+        { id: "user_cv", name: "CV_Master.pdf", icon: "/pdf.jpeg", app: "preview" },
+        { id: "user_safari", name: "Safari.app", icon: "/safari.jpeg", app: "safari" },
+        { id: "user_nova", name: "Nova.app", icon: "/nova.jpeg", app: "nova" },
     ]
   };
 
   const handleFileAction = (file: any) => {
     if (file.app === 'none') return;
+
+    if (file.app === 'folder_nav') {
+        setActiveFolder(file.targetFolder);
+        return;
+    }
 
     if (file.app === 'download_all') {
         // Trigger multi download: CV and Article (Article.tsx content simulated as PDF if needed, but here we trigger link)

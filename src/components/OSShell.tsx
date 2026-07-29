@@ -13,7 +13,7 @@ import Article from "./Apps/Article";
 import SystemManual from "./Apps/SystemManual";
 import Gallery from "./Apps/Gallery";
 import SystemsShowcase from "./SystemsShowcase";
-import Capabilities from "./Capabilities";
+import SystemSettings from "./SystemSettings";
 import AcademicFoundation from "./AcademicFoundation";
 import ContactPortal from "./ContactPortal";
 
@@ -48,6 +48,7 @@ export default function OSShell({ children }: { children: React.ReactNode }) {
   const dockItems: { id: AppID; label: string; icon: string; appName: string }[] = [
     { id: "finder", label: "Finder", icon: "/finder.jpeg", appName: "Finder" },
     { id: "safari", label: "Safari", icon: "/safari.jpeg", appName: "Safari" },
+    { id: "gallery", label: "Gallery", icon: "/applications.jpeg", appName: "Gallery" },
     { id: "nova", label: "Nova", icon: "/nova.jpeg", appName: "Nova Editor" },
     { id: "preview", label: "Preview", icon: "/preview.jpeg", appName: "Preview" },
     { id: "manual", label: "Solutions", icon: "/preview.jpeg", appName: "Tech Solutions" },
@@ -98,7 +99,25 @@ export default function OSShell({ children }: { children: React.ReactNode }) {
 
   const handleAppOpen = (id: AppID, data?: any) => {
     setShowAppGrid(false);
-    openApp(id, data);
+    if (id === 'gallery' && !data) {
+        openApp('gallery', {
+            items: [
+                '/projects/hris.png',
+                '/projects/fmis.png',
+                '/projects/ops.png',
+                '/projects/care.png',
+                '/projects/abbas.png',
+                '/projects/naseem.png',
+                '/projects/valet.png',
+                '/projects/mamey.png',
+                '/projects/ops-dash.png',
+                '/projects/opx-sud.jpeg',
+                '/projects/opx-edu-cover.jpeg'
+            ]
+        });
+    } else {
+        openApp(id, data);
+    }
   };
 
   const renderApp = (id: AppID) => {
@@ -108,7 +127,7 @@ export default function OSShell({ children }: { children: React.ReactNode }) {
       case 'finder': return <Finder />;
       case 'preview': return <Preview />;
       case 'systems': return <SystemsShowcase />;
-      case 'skills': return <Capabilities />;
+      case 'skills': return <SystemSettings />;
       case 'education': return <AcademicFoundation />;
       case 'mail': return <ContactPortal />;
       case 'nova': return <Nova />;

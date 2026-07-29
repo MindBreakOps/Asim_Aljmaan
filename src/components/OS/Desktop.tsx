@@ -5,25 +5,52 @@ import { useOSStore } from "@/store/useOSStore";
 import { useLanguage } from "@/context/LanguageContext";
 
 export default function Desktop() {
-  const { openApp } = useOSStore();
+  const { openApp, setActiveFolder } = useOSStore();
   const { t, locale } = useLanguage();
+  const [hasMounted, setHasMounted] = React.useState(false);
   const constraintsRef = useRef(null);
   const isAr = locale === "ar";
+
+  React.useEffect(() => {
+    setHasMounted(true);
+  }, []);
 
   const icons = [
     { id: "cv", name: "Asim_Ahmed_CV.pdf", icon: "/preview.jpeg", app: "preview" },
     { id: "manual", name: "Tech_Solutions.app", icon: "/preview.jpeg", app: "manual" },
-    { id: "article", name: "The_Operix_Logic.txt", icon: "/preview.jpeg", app: "article" },
-    { id: "op_hris", name: "OPERIX_HRIS.app", icon: "/apps/hro.svg", app: "safari", url: "https://hris.operix-solutions.online" },
+    { id: "article", name: "The_Operix_Logic.txt", icon: "/documents.jpeg", app: "article" },
+    { id: "word_doc", name: "Project_Proposal.docx", icon: "/documents.jpeg", app: "preview" },
+    { id: "gallery", name: "System_Gallery", icon: "/applications.jpeg", app: "gallery" },
+    { id: "op_hris", name: "OPERIX_HRIS.app", icon: "/apps/hro.svg", app: "safari", url: "https://www.hris.operix-solutions.online" },
     { id: "op_fmis", name: "OPERIX_FMIS.app", icon: "/apps/fmis.png", app: "safari", url: "https://www.fmis.operix-solutions.online" },
-    { id: "op_ops", name: "OPERIX_Ops.app", icon: "/apps/ops.svg", app: "safari", url: "https://ops.operix-solutions.online" },
+    { id: "op_ops", name: "OPERIX_Ops.app", icon: "/apps/ops.svg", app: "safari", url: "https://www.ops.operix-solutions.online" },
     { id: "nova", name: "Main_Controller.js", icon: "/nova.jpeg", app: "nova" },
     { id: "archive", name: "Dossier_Archive", icon: "/applications.jpeg", app: "finder" },
+    { id: "disk", name: "Asim_OS_Disk", icon: "/disk.jpeg", app: "finder", folder: 'AsimOSDisk' },
   ];
 
-  const handleIconClick = (icon: typeof icons[0]) => {
+  const projectScreenshots = [
+    '/projects/hris.png',
+    '/projects/fmis.png',
+    '/projects/ops.png',
+    '/projects/care.png',
+    '/projects/abbas.png',
+    '/projects/naseem.png',
+    '/projects/valet.png',
+    '/projects/mamey.png',
+    '/projects/ops-dash.png',
+    '/projects/opx-sud.jpeg',
+    '/projects/opx-edu-cover.jpeg'
+  ];
+
+  const handleIconClick = (icon: any) => {
     if (icon.app === 'safari' && icon.url) {
         openApp('safari', { url: icon.url });
+    } else if (icon.app === 'gallery') {
+        openApp('gallery', { items: projectScreenshots });
+    } else if (icon.app === 'finder' && icon.folder) {
+        setActiveFolder(icon.folder as any);
+        openApp('finder');
     } else {
         openApp(icon.app as any);
     }
@@ -45,7 +72,7 @@ export default function Desktop() {
         {icons.map((file) => (
           <motion.div
             key={file.id}
-            drag={typeof window !== 'undefined' && window.innerWidth >= 768}
+            drag={hasMounted && window.innerWidth >= 768}
             dragConstraints={constraintsRef}
             dragElastic={0.1}
             whileHover={{ scale: 1.1 }}

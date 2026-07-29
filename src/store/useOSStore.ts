@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 
 export type AppID = 'finder' | 'safari' | 'terminal' | 'preview' | 'systems' | 'skills' | 'education' | 'mail' | 'nova' | 'article' | 'manual' | 'gallery' | 'none';
-export type FolderID = 'Desktop' | 'Documents' | 'Downloads' | 'Applications';
+export type FolderID = 'Desktop' | 'Documents' | 'Downloads' | 'Applications' | 'AsimOSDisk' | 'User';
 
 interface WindowState {
   id: AppID;
