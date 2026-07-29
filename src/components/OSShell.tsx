@@ -9,6 +9,8 @@ import Terminal from "./Apps/Terminal";
 import Finder from "./Apps/Finder";
 import Preview from "./Apps/Preview";
 import Nova from "./Apps/Nova";
+import Article from "./Apps/Article";
+import SystemManual from "./Apps/SystemManual";
 import SystemsShowcase from "./SystemsShowcase";
 import Capabilities from "./Capabilities";
 import AcademicFoundation from "./AcademicFoundation";
@@ -108,6 +110,8 @@ export default function OSShell({ children }: { children: React.ReactNode }) {
       case 'education': return <AcademicFoundation />;
       case 'mail': return <ContactPortal />;
       case 'nova': return <Nova />;
+      case 'article': return <Article />;
+      case 'manual': return <SystemManual />;
       default: return null;
     }
   };
@@ -115,39 +119,38 @@ export default function OSShell({ children }: { children: React.ReactNode }) {
   const menus = [
     { id: 'apple', label: <img src="/logo.svg" className="size-4 brightness-0" alt="" />, items: [
       { label: "About Asim OS", action: () => handleAppOpen('preview') },
+      { label: "System Manual", action: () => handleAppOpen('manual') },
+      { label: "Article Insight", action: () => handleAppOpen('article') },
       { label: "System Settings...", action: () => handleAppOpen('skills') },
       { label: "Restart...", action: () => window.location.reload() },
       { label: "Shut Down...", action: () => document.body.style.backgroundColor = 'black' },
     ]},
     { id: 'file', label: "File", items: [
       { label: "New Window", action: () => handleAppOpen('finder') },
-      { label: "Open", action: () => {} },
+      { label: "Open Archive", action: () => handleAppOpen('finder') },
       { label: "Close Window", action: () => focusedWindow && useOSStore.getState().closeWindow(focusedWindow) },
-    ]},
-    { id: 'edit', label: "Edit", items: [
-      { label: "Undo", action: () => {} },
-      { label: "Redo", action: () => {} },
-      { label: "Cut", action: () => {} },
-      { label: "Copy", action: () => {} },
-      { label: "Paste", action: () => {} },
+      { label: "Close All Apps", action: () => closeAll() },
     ]},
     { id: 'view', label: "View", items: [
-      { label: "As Icons", action: () => {} },
-      { label: "As List", action: () => {} },
+      { label: "Launchpad", action: () => setShowAppGrid(true) },
       { label: "Enter Full Screen", action: () => document.documentElement.requestFullscreen() },
     ]},
+    { id: 'windows', label: "Windows", items: Object.values(openWindows).filter(w => w && w.id).map(w => ({
+        label: `Focus ${w!.id.toUpperCase()}`,
+        action: () => focusWindow(w!.id)
+    }))},
   ];
 
   return (
     <div
         className={`fixed inset-0 w-full h-full overflow-hidden flex flex-col ${isAr ? "rtl font-cairo" : "ltr font-sans"}`}
         style={{
-            backgroundColor: "#000000",
+            backgroundColor: "#F5F5F7",
         }}
     >
 
       {/* GLOBAL TOUCH/CLICK BACKGROUND HANDLER */}
-      <div className="absolute inset-0 z-0" onClick={() => { closeAll(); setActiveMenu(null); setShowAppGrid(false); }} onTouchStart={() => { closeAll(); setActiveMenu(null); setShowAppGrid(false); }} />
+      <div className="absolute inset-0 z-0" onClick={() => { setActiveMenu(null); setShowAppGrid(false); }} onTouchStart={() => { setActiveMenu(null); setShowAppGrid(false); }} />
 
       {/* macOS MENU BAR */}
       {!isMobile && (
@@ -171,11 +174,13 @@ export default function OSShell({ children }: { children: React.ReactNode }) {
                       transition={{ duration: 0.1 }}
                       className="mac-dropdown"
                     >
-                      {menu.items.map((item, i) => (
+                      {menu.items.length > 0 ? menu.items.map((item, i) => (
                         <div key={i} onClick={(e) => { e.stopPropagation(); item.action(); setActiveMenu(null); }} className="mac-dropdown-item">
                           {item.label}
                         </div>
-                      ))}
+                      )) : (
+                        <div className="px-3 py-2 text-[11px] text-black/20 font-bold uppercase tracking-widest italic">No Open Windows</div>
+                      )}
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -205,9 +210,9 @@ export default function OSShell({ children }: { children: React.ReactNode }) {
                     {locale === "en" ? "AR" : "EN"}
                 </button>
                 <div className="flex gap-1 items-end opacity-40">
-                    <div className="w-1 h-2 bg-black rounded-full" />
-                    <div className="w-1 h-3 bg-black rounded-full" />
-                    <div className="w-1 h-4 bg-black rounded-full" />
+                    <div className="w-1 h-2.5 bg-black rounded-full" />
+                    <div className="w-1 h-3.5 bg-black rounded-full" />
+                    <div className="w-1 h-4.5 bg-black rounded-full" />
                 </div>
                 <div className="w-7 h-3.5 border border-black/20 rounded-[4px] relative p-[1.5px] opacity-40">
                     <div className="h-full w-[85%] bg-black rounded-[2px]" />
@@ -251,7 +256,7 @@ export default function OSShell({ children }: { children: React.ReactNode }) {
                                             className="flex flex-col items-center gap-2 md:gap-3 group active:scale-95 transition-transform"
                                         >
                                             <div className="size-16 md:size-20 bg-white/40 rounded-[22%] flex items-center justify-center shadow-xl md:shadow-2xl group-hover:scale-110 transition-transform p-3 md:p-4 backdrop-blur-md border border-white/20">
-                                                <img src={app.icon} className="w-full h-full object-contain" alt={app.name} />
+                                                <img src={app.icon} className="w-full h-full object-contain rounded-[22%]" alt={app.name} />
                                             </div>
                                             <span className="text-[9px] md:text-[11px] font-bold text-black group-hover:text-mac-blue transition-colors uppercase tracking-widest">{app.name}</span>
                                         </button>
@@ -276,7 +281,7 @@ export default function OSShell({ children }: { children: React.ReactNode }) {
                 focusedWindow === item.id ? "bg-black/10 shadow-inner" : "hover:bg-black/5"
               }`}
             >
-              <img src={item.icon} className="size-10 object-contain drop-shadow-md" alt={item.label} />
+              <img src={item.icon} className="size-10 object-contain drop-shadow-md rounded-[22%]" alt={item.label} />
               <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-white/90 backdrop-blur-xl px-3 py-1 rounded-md text-[11px] font-bold text-black opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none border border-black/10 shadow-lg whitespace-nowrap">
                 {item.appName}
               </div>
@@ -292,7 +297,7 @@ export default function OSShell({ children }: { children: React.ReactNode }) {
                 showAppGrid ? "bg-black/10 shadow-inner" : "hover:bg-black/5"
               }`}
             >
-              <img src="/applications.jpeg" className="size-10 object-contain drop-shadow-md" alt="Applications" />
+              <img src="/applications.jpeg" className="size-10 object-contain drop-shadow-md rounded-[22%]" alt="Applications" />
               <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-white/90 backdrop-blur-xl px-3 py-1 rounded-md text-[11px] font-bold text-black opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none border border-black/10 shadow-lg whitespace-nowrap">
                 Applications
               </div>
@@ -311,7 +316,7 @@ export default function OSShell({ children }: { children: React.ReactNode }) {
                   focusedWindow === item.id ? "text-mac-blue" : "text-black/30"
                 }`}
               >
-                <img src={item.icon} className="size-8 object-contain" alt={item.label} />
+                <img src={item.icon} className="size-8 object-contain rounded-[22%]" alt={item.label} />
                 <span className="text-[10px] font-bold uppercase tracking-tight">{item.label}</span>
               </button>
             ))}
@@ -321,7 +326,7 @@ export default function OSShell({ children }: { children: React.ReactNode }) {
                   showAppGrid ? "text-mac-blue" : "text-black/30"
                 }`}
               >
-                <img src="/applications.jpeg" className="size-8 object-contain rounded-lg" alt="Apps" />
+                <img src="/applications.jpeg" className="size-8 object-contain rounded-[22%]" alt="Apps" />
                 <span className="text-[10px] font-bold uppercase tracking-tight">Apps</span>
               </button>
         </div>

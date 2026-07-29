@@ -68,7 +68,7 @@ export default function Finder() {
                     onClick={() => setActiveFolder(item.id)}
                     className={`w-full px-2 py-1.5 rounded-md text-[13px] font-medium flex items-center gap-3 transition-colors ${activeFolder === item.id ? "bg-black/10" : "hover:bg-black/5"}`}
                 >
-                    <img src={item.icon} className="size-5 object-contain" alt="" />
+                    <img src={item.icon} className="size-5 object-contain rounded-[22%]" alt="" />
                     {item.name}
                 </button>
              ))}
@@ -87,7 +87,7 @@ export default function Finder() {
             }}
             className="flex flex-col items-center gap-2 group cursor-default p-2 rounded-lg hover:bg-black/5 border border-transparent transition-all"
           >
-            <img src={file.icon} className="size-16 drop-shadow-md group-hover:scale-105 transition-transform" alt={file.name} />
+            <img src={file.icon} className="size-16 drop-shadow-md group-hover:scale-105 transition-transform rounded-[22%]" alt={file.name} />
             <span className="text-[12px] font-medium text-center break-all px-1 leading-tight">{file.name}</span>
           </div>
         ))}

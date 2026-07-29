@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-export type AppID = 'finder' | 'safari' | 'terminal' | 'preview' | 'systems' | 'skills' | 'education' | 'mail' | 'nova' | 'none';
+export type AppID = 'finder' | 'safari' | 'terminal' | 'preview' | 'systems' | 'skills' | 'education' | 'mail' | 'nova' | 'article' | 'manual' | 'none';
 export type FolderID = 'Desktop' | 'Documents' | 'Downloads' | 'Applications';
 
 interface WindowState {
