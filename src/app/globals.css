@@ -73,6 +73,10 @@
   .mac-label {
     @apply block text-[11px] font-black text-black/40 uppercase tracking-widest mb-1.5;
   }
+
+  .ios-tabbar {
+    @apply fixed bottom-0 left-0 right-0 h-20 bg-white/80 backdrop-blur-xl border-t border-black/5 z-[1000] flex items-center justify-around px-4 pb-4;
+  }
 }
 
 /* Arabic Script Polish */

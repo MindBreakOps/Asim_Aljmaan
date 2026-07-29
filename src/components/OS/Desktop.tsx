@@ -32,9 +32,9 @@ export default function Desktop() {
   };
 
   return (
-    <div className="w-full h-full p-24 flex flex-col relative" ref={constraintsRef}>
+    <div className="w-full h-full p-4 md:p-24 flex flex-col relative" ref={constraintsRef}>
       {/* DESKTOP ICONS GRID */}
-      <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-12 w-fit ${isAr ? "mr-auto" : "ml-auto"}`}>
+      <div className={`grid grid-cols-2 md:grid-cols-4 lg:grid-cols-1 gap-4 md:gap-12 w-full md:w-fit ${isAr ? "md:mr-auto" : "md:ml-auto"} pt-16 md:pt-0`}>
         {icons.map((file) => (
           <motion.div
             key={file.id}

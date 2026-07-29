@@ -201,16 +201,16 @@ export default function OSShell({ children }: { children: React.ReactNode }) {
 
       {/* MOBILE iOS STATUS BAR */}
       {isMobile && (
-        <div className="fixed top-0 left-0 right-0 h-14 flex items-center justify-between px-10 z-[500] bg-black/5 backdrop-blur-md border-b border-black/5">
+        <div className="fixed top-0 left-0 right-0 h-14 flex items-center justify-between px-6 z-[2000] bg-white/70 backdrop-blur-md border-b border-black/5">
              <span className="font-black text-sm tracking-tight text-black">{formatTime(time)}</span>
-             <div className="flex items-center gap-4">
-                <button onClick={(e) => { e.stopPropagation(); setLocale(locale === "en" ? "ar" : "en"); }} className="h-7 px-3 rounded-full bg-black/5 text-black text-[10px] font-black border border-black/10 uppercase">
+             <div className="flex items-center gap-3">
+                <button onClick={(e) => { e.stopPropagation(); setLocale(locale === "en" ? "ar" : "en"); }} className="h-7 px-3 rounded-full bg-black/5 text-black text-[10px] font-black border border-black/10 uppercase active:scale-95 transition-transform">
                     {locale === "en" ? "AR" : "EN"}
                 </button>
                 <div className="flex gap-1 items-end opacity-40">
-                    <div className="w-1 h-2.5 bg-black rounded-full" />
-                    <div className="w-1 h-3.5 bg-black rounded-full" />
-                    <div className="w-1 h-4.5 bg-black rounded-full" />
+                    <div className="w-1 h-2 bg-black rounded-full" />
+                    <div className="w-1 h-3 bg-black rounded-full" />
+                    <div className="w-1 h-4 bg-black rounded-full" />
                 </div>
                 <div className="w-7 h-3.5 border border-black/20 rounded-[4px] relative p-[1.5px] opacity-40">
                     <div className="h-full w-[85%] bg-black rounded-[2px]" />
@@ -220,14 +220,14 @@ export default function OSShell({ children }: { children: React.ReactNode }) {
       )}
 
       {/* CONTENT AREA */}
-      <div className={`relative z-10 w-full h-full overflow-hidden ${!isMobile ? "pt-7" : ""}`}>
+      <div className={`relative z-10 w-full h-full overflow-hidden ${!isMobile ? "pt-7" : "pt-14"}`}>
         {children}
 
         {/* WINDOWS */}
         <AnimatePresence>
-            {Object.values(openWindows).map((win) => (
-                <Window key={win.id} id={win.id!} title={win.id!.toUpperCase()} icon={dockItems.find(i => i.id === win.id)?.icon || "📄"}>
-                    {renderApp(win.id!)}
+            {Object.values(openWindows).filter(win => win && win.id).map((win) => (
+                <Window key={win!.id} id={win!.id} title={win!.id.toUpperCase()} icon={dockItems.find(i => i.id === win!.id)?.icon || "📄"}>
+                    {renderApp(win!.id)}
                 </Window>
             ))}
         </AnimatePresence>
@@ -239,24 +239,24 @@ export default function OSShell({ children }: { children: React.ReactNode }) {
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.95 }}
-                    className="absolute inset-0 z-[1000] flex items-center justify-center p-20 bg-white/20 backdrop-blur-3xl"
+                    className="fixed inset-0 z-[3000] flex items-center justify-center p-6 md:p-20 bg-white/20 backdrop-blur-3xl"
                     onClick={() => setShowAppGrid(false)}
                 >
-                    <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12" onClick={e => e.stopPropagation()}>
+                    <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-12 overflow-y-auto max-h-[80vh] custom-scrollbar p-4" onClick={e => e.stopPropagation()}>
                         {organizedApps.map((cat, i) => (
-                            <div key={i} className="space-y-8">
-                                <h3 className="text-sm font-black text-black/40 uppercase tracking-[0.3em] border-b border-black/5 pb-4">{cat.category}</h3>
-                                <div className="grid grid-cols-2 gap-8">
+                            <div key={i} className="space-y-4 md:space-y-8">
+                                <h3 className="text-[10px] md:text-sm font-black text-black/40 uppercase tracking-[0.3em] border-b border-black/5 pb-2 md:pb-4">{cat.category}</h3>
+                                <div className="grid grid-cols-2 gap-4 md:gap-8">
                                     {cat.apps.map((app, j) => (
                                         <button
                                             key={j}
                                             onClick={() => handleAppOpen('safari', { url: app.url })}
-                                            className="flex flex-col items-center gap-3 group"
+                                            className="flex flex-col items-center gap-2 md:gap-3 group active:scale-95 transition-transform"
                                         >
-                                            <div className="size-20 bg-white/40 rounded-[22%] flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform p-4 backdrop-blur-md border border-white/20">
+                                            <div className="size-16 md:size-20 bg-white/40 rounded-[22%] flex items-center justify-center shadow-xl md:shadow-2xl group-hover:scale-110 transition-transform p-3 md:p-4 backdrop-blur-md border border-white/20">
                                                 <img src={app.icon} className="w-full h-full object-contain" alt={app.name} />
                                             </div>
-                                            <span className="text-[11px] font-bold text-black group-hover:text-mac-blue transition-colors uppercase tracking-widest">{app.name}</span>
+                                            <span className="text-[9px] md:text-[11px] font-bold text-black group-hover:text-mac-blue transition-colors uppercase tracking-widest">{app.name}</span>
                                         </button>
                                     ))}
                                 </div>
@@ -274,7 +274,7 @@ export default function OSShell({ children }: { children: React.ReactNode }) {
           {dockItems.map((item) => (
             <button
               key={item.id}
-              onClick={() => handleAppOpen(item.id)}
+              onClick={(e) => handleAppOpen(item.id)}
               className={`relative group h-12 w-12 flex items-center justify-center rounded-[12px] transition-all duration-300 hover:scale-125 hover:-translate-y-3 ${
                 focusedWindow === item.id ? "bg-black/10 shadow-inner" : "hover:bg-black/5"
               }`}
@@ -305,19 +305,28 @@ export default function OSShell({ children }: { children: React.ReactNode }) {
 
       {/* iOS TAB BAR */}
       {isMobile && (
-        <div className="ios-tabbar shadow-[0_-10px_40px_rgba(0,0,0,0.05)] border-t border-black/5">
+        <div className="ios-tabbar shadow-[0_-10px_40px_rgba(0,0,0,0.1)]">
             {dockItems.slice(0, 5).map((item) => (
               <button
                 key={item.id}
-                onClick={() => handleAppOpen(item.id)}
-                className={`flex flex-col items-center gap-1 transition-all duration-300 ${
-                  focusedWindow === item.id ? "text-mac-blue scale-110" : "text-black/30"
+                onClick={(e) => handleAppOpen(item.id)}
+                className={`flex flex-col items-center gap-1 transition-all duration-300 active:scale-110 ${
+                  focusedWindow === item.id ? "text-mac-blue" : "text-black/30"
                 }`}
               >
                 <img src={item.icon} className="size-8 object-contain" alt={item.label} />
                 <span className="text-[10px] font-bold uppercase tracking-tight">{item.label}</span>
               </button>
             ))}
+             <button
+                onClick={() => setShowAppGrid(!showAppGrid)}
+                className={`flex flex-col items-center gap-1 transition-all duration-300 active:scale-110 ${
+                  showAppGrid ? "text-mac-blue" : "text-black/30"
+                }`}
+              >
+                <img src="/applications.jpeg" className="size-8 object-contain rounded-lg" alt="Apps" />
+                <span className="text-[10px] font-bold uppercase tracking-tight">Apps</span>
+              </button>
         </div>
       )}
     </div>
