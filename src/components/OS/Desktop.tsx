@@ -12,9 +12,13 @@ export default function Desktop() {
 
   const icons = [
     { id: "cv", name: "Asim_Ahmed_CV.pdf", icon: "/preview.jpeg", app: "preview" },
-    { id: "op_main", name: "Operix_Solutions.app", icon: "/main.png", app: "safari", url: "https://operix-solutions.com" },
-    { id: "op_249", name: "Operix_Sudan.app", icon: "/249.png", app: "safari", url: "https://249.operix-solutions.com" },
-    { id: "op_online", name: "Operix_Reversed.app", icon: "/reversed.png", app: "safari", url: "https://operix-solutions.online" },
+    { id: "op_hris", name: "OPERIX_HRIS.app", icon: "/apps/hro.svg", app: "safari", url: "https://hris.operix-solutions.online" },
+    { id: "op_fmis", name: "OPERIX_FMIS.app", icon: "/apps/fmis.png", app: "safari", url: "https://fmis.operix-solutions.online" },
+    { id: "op_ops", name: "OPERIX_Ops.app", icon: "/apps/ops.svg", app: "safari", url: "https://ops.operix-solutions.online" },
+    { id: "op_care", name: "OPERIX_Care.app", icon: "/apps/care.svg", app: "safari", url: "https://care.operix-solutions.online" },
+    { id: "op_edu", name: "OPERIX_Edu.app", icon: "/apps/edu.png", app: "safari", url: "https://edu.operix-solutions.online" },
+    { id: "op_binabbas", name: "BinAbbas_Group.app", icon: "/apps/binabbas.png", app: "safari", url: "https://www.binabbas.operix-solutions.online" },
+    { id: "op_hasad", name: "Hasad_Systems.app", icon: "/apps/hasad.png", app: "safari", url: "https://www.hasad.operix-solutions.online" },
     { id: "nova", name: "Main_Controller.js", icon: "/nova.jpeg", app: "nova" },
     { id: "archive", name: "Dossier_Archive", icon: "/applications.jpeg", app: "finder" },
   ];
@@ -30,7 +34,7 @@ export default function Desktop() {
   return (
     <div className="w-full h-full p-24 flex flex-col relative" ref={constraintsRef}>
       {/* DESKTOP ICONS GRID */}
-      <div className={`grid grid-cols-1 gap-12 w-fit ${isAr ? "mr-auto" : "ml-auto"}`}>
+      <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-12 w-fit ${isAr ? "mr-auto" : "ml-auto"}`}>
         {icons.map((file) => (
           <motion.div
             key={file.id}
@@ -55,12 +59,9 @@ export default function Desktop() {
         ))}
       </div>
 
-      {/* Cinematic Wallpaper Elements (Replaces Bio Text) */}
+      {/* Cinematic Wallpaper Elements */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden z-0">
-
-          {/* Abstract System Sketches & IDE Windows */}
           <div className="relative w-full h-full">
-
             {/* Main Title Sketch */}
             <motion.div
               initial={{ opacity: 0 }}
@@ -105,7 +106,7 @@ export default function Desktop() {
               <div className="text-mac-blue mt-4 animate-pulse font-black">_</div>
             </motion.div>
 
-            {/* Abstract Geometry / Sketches */}
+            {/* Abstract Geometry */}
             <div className="absolute top-1/4 right-[20%] size-64 border border-black/5 rounded-full animate-spin-slow opacity-20" />
             <div className="absolute top-1/2 left-[30%] w-px h-96 bg-gradient-to-b from-transparent via-black/10 to-transparent rotate-45 opacity-20" />
             <div className="absolute bottom-1/4 left-[20%] size-32 border-2 border-black/5 rotate-12 opacity-20" />
@@ -114,7 +115,6 @@ export default function Desktop() {
             <div className="absolute top-[-10%] left-[-10%] size-[500px] bg-mac-blue/10 blur-[120px] rounded-full pointer-events-none opacity-50" />
             <div className="absolute bottom-[-10%] right-[-10%] size-[600px] bg-gold/10 blur-[150px] rounded-full pointer-events-none opacity-50" />
           </div>
-
       </div>
 
       {/* OS VERSION INDICATOR */}

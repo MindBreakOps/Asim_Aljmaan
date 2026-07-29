@@ -35,8 +35,24 @@ export default function Finder() {
     Applications: [
         { id: "safari", name: "Safari.app", icon: "/safari.jpeg", app: "safari" },
         { id: "terminal", name: "Terminal.app", icon: "/terminal.jpeg", app: "terminal" },
-        { id: "appstore", name: "App Store.app", icon: "/appstore.jpeg", app: "systems" },
+        { id: "nova", name: "Nova.app", icon: "/nova.jpeg", app: "nova" },
+        { id: "op_care", name: "OPERIX_Care.app", icon: "/apps/care.svg", app: "safari", url: "https://care.operix-solutions.online" },
+        { id: "op_hris", name: "OPERIX_HRIS.app", icon: "/apps/hro.svg", app: "safari", url: "https://hris.operix-solutions.online" },
+        { id: "op_ops", name: "OPERIX_Ops.app", icon: "/apps/ops.svg", app: "safari", url: "https://ops.operix-solutions.online" },
+        { id: "op_hasad", name: "Hasad_Systems.app", icon: "/apps/hasad.png", app: "safari", url: "https://www.hasad.operix-solutions.online" },
+        { id: "op_binabbas", name: "BinAbbas_Group.app", icon: "/apps/binabbas.png", app: "safari", url: "https://www.binabbas.operix-solutions.online" },
+        { id: "op_edu", name: "OPERIX_Edu.app", icon: "/apps/edu.png", app: "safari", url: "https://edu.operix-solutions.online" },
+        { id: "op_fmis", name: "OPERIX_FMIS.app", icon: "/apps/fmis.png", app: "safari", url: "https://fmis.operix-solutions.online" },
     ]
+  };
+
+  const handleFileAction = (file: any) => {
+    if (file.app === 'none') return;
+    if (file.app === 'safari' && file.url) {
+        openApp('safari', { url: file.url });
+    } else {
+        openApp(file.app as any);
+    }
   };
 
   return (
@@ -65,7 +81,10 @@ export default function Finder() {
         {content[activeFolder].map((file) => (
           <div
             key={file.id}
-            onDoubleClick={() => file.app !== 'none' && openApp(file.app as any)}
+            onDoubleClick={() => handleFileAction(file)}
+            onClick={() => {
+                if (window.innerWidth < 768) handleFileAction(file);
+            }}
             className="flex flex-col items-center gap-2 group cursor-default p-2 rounded-lg hover:bg-black/5 border border-transparent transition-all"
           >
             <img src={file.icon} className="size-16 drop-shadow-md group-hover:scale-105 transition-transform" alt={file.name} />
