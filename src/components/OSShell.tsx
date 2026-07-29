@@ -57,7 +57,7 @@ export default function OSShell({ children }: { children: React.ReactNode }) {
       category: "Business Apps",
       apps: [
         { name: "HRIS", icon: "/apps/hro.svg", url: "https://hris.operix-solutions.online" },
-        { name: "FMIS", icon: "/apps/fmis.png", url: "https://fmis.operix-solutions.online" },
+        { name: "FMIS", icon: "/apps/fmis.png", url: "https://www.fmis.operix-solutions.online" },
         { name: "Operations", icon: "/apps/ops.svg", url: "https://ops.operix-solutions.online" },
       ]
     },
@@ -70,7 +70,7 @@ export default function OSShell({ children }: { children: React.ReactNode }) {
     {
       category: "Academic",
       apps: [
-        { name: "Education", icon: "/apps/edu.png", url: "https://edu.operix-solutions.online" },
+        { name: "Education", icon: "/apps/edu.png", url: "https://www.edu.operix-solutions.online" },
       ]
     },
     {
@@ -142,10 +142,7 @@ export default function OSShell({ children }: { children: React.ReactNode }) {
     <div
         className={`fixed inset-0 w-full h-full overflow-hidden flex flex-col ${isAr ? "rtl font-cairo" : "ltr font-sans"}`}
         style={{
-            backgroundColor: "#F5F5F7",
-            backgroundImage: "url('/desk.jpg')",
-            backgroundSize: "cover",
-            backgroundPosition: "center"
+            backgroundColor: "#000000",
         }}
     >
 
