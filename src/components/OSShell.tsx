@@ -11,6 +11,7 @@ import Preview from "./Apps/Preview";
 import Nova from "./Apps/Nova";
 import Article from "./Apps/Article";
 import SystemManual from "./Apps/SystemManual";
+import Gallery from "./Apps/Gallery";
 import SystemsShowcase from "./SystemsShowcase";
 import Capabilities from "./Capabilities";
 import AcademicFoundation from "./AcademicFoundation";
@@ -113,6 +114,7 @@ export default function OSShell({ children }: { children: React.ReactNode }) {
       case 'nova': return <Nova />;
       case 'article': return <Article />;
       case 'manual': return <SystemManual />;
+      case 'gallery': return <Gallery />;
       default: return null;
     }
   };

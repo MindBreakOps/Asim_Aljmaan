@@ -54,8 +54,8 @@ export default function Finder() {
     if (file.app === 'none') return;
 
     if (file.app === 'download_all') {
-        // Trigger multi download
-        const links = ['/Asim_Ahmed_CV.pdf', '/Asim_Ahmed_CV.pdf']; // Placeholder for article
+        // Trigger multi download: CV and Article (Article.tsx content simulated as PDF if needed, but here we trigger link)
+        const links = ['/Asim_Ahmed_CV.pdf', '/Asim_Ahmed_CV.pdf']; // Article PDF placeholder
         links.forEach((url, i) => {
             setTimeout(() => {
                 const a = document.createElement('a');
